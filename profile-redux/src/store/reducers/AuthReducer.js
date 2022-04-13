@@ -6,6 +6,7 @@ const INITIAL_STATE = {
         error: false
     }
 }
+
 // função de autenticação... pode haver varias funcoes, ex: funcao de login, funcao de logout, etc.
 function authReducer(state = INITIAL_STATE, action) {
   if (action.type === 'SET_LOGIN') {
@@ -18,6 +19,7 @@ function authReducer(state = INITIAL_STATE, action) {
             loading: action.loading,
             error: action.error
           }
+          
       }
   } else if (action.type === 'SET_LOGOUT') {
     return {

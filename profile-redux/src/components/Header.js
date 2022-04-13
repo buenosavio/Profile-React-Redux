@@ -8,10 +8,8 @@ const Header = ({auth, dispatch}) => {
 
     const navigate = useNavigate();
 
-    let hasToken;
-
     useEffect(() => {
-        hasToken = localStorage.getItem('token')
+        const hasToken = localStorage.getItem('token')
         if (!hasToken) {
             navigate('/login')
         }
@@ -28,7 +26,7 @@ const Header = ({auth, dispatch}) => {
             {isLogged() ? 
                 <>
                     <Menu />         
-                    <button onClick={() => handleLogout(dispatch)}>Logout</button> 
+                    <button onClick={() => handleLogout(dispatch, navigate)}>Logout</button> 
                 </> : null}                        
         </header>
     )

@@ -1,6 +1,6 @@
 import { apiAuth } from "../../api"
 
-export const handleLogin = async (values, dispatch) => {
+export const handleLogin = async (values, dispatch, navigate) => {
     try {
         const {data} = await apiAuth.post('/auth', values)
         const isLogged = {
@@ -10,14 +10,14 @@ export const handleLogin = async (values, dispatch) => {
         }
         localStorage.setItem('token', data)
         dispatch(isLogged)
-
+        navigate('/')      
     } catch (error) {
         console.log(error)        
     }
 }
 
 //criei um para logout por julgar mais bonito, não sei se devo usar o SET_LOGIN para o logout
-export const handleLogout = (dispatch) => {
+export const handleLogout = (dispatch, navigate) => {
     const notLogged = {
         type: 'SET_LOGOUT',
         token: '',
@@ -25,6 +25,7 @@ export const handleLogout = (dispatch) => {
     }
     dispatch(notLogged)
     localStorage.removeItem('token')
+    navigate('/login')    
 }
 
 //permanecer logado ao dar f5 na página

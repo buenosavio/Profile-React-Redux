@@ -24,7 +24,7 @@ function Routers({auth, dispatch}) {
             <Route path="*" element={<NotFound/>}/>
             <Route path='/' element={<Home />}/>
             <Route path='/profile' element={<Profile/>} />
-            <Route path='/login' element={<Login/>} />
+            <Route path='/login' element={<Login/>} />        
         </Routes>
     </BrowserRouter>
   )

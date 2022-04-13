@@ -21,7 +21,7 @@ function Login({auth, dispatch}) {
         senha: ''
     },
     onSubmit: values => {
-        handleLogin(values, dispatch)
+        handleLogin(values, dispatch, navigate)            
     },
     });
 
