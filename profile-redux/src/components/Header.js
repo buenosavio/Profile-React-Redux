@@ -1,30 +1,35 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { handleLogout, isLogged, handleLogin } from "../store/actions/AuthActions";
+import { useNavigate } from "react-router-dom";
+import { handleLogout } from "../store/actions/AuthActions";
+import Menu from "./Menu";
 
 const Header = ({auth, dispatch}) => {
 
     const navigate = useNavigate();
 
+    let hasToken;
+
     useEffect(() => {
-        const hasToken = localStorage.getItem('token')
-        if (hasToken) {
-            isLogged(hasToken, dispatch)
-        }else {
+        hasToken = localStorage.getItem('token')
+        if (!hasToken) {
             navigate('/login')
-        }        
-    },[])
+        }
+        
+    },[]) 
+
+    const isLogged = () => {
+        const hasToken = localStorage.getItem('token')
+        return (hasToken)
+      }
     
     return(
         <header>
-            <ul>
-                <li>
-                    <Link to='/'>Home</Link>
-                    <Link to='/profile'>Perfil</Link>
-                    <button onClick={() => handleLogout(dispatch)}>Logout</button>
-                </li>
-            </ul>
+            {isLogged() ? 
+                <>
+                    <Menu />         
+                    <button onClick={() => handleLogout(dispatch)}>Logout</button> 
+                </> : null}                        
         </header>
     )
 }
